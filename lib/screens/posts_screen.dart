@@ -44,12 +44,14 @@ class RenderViewPost extends StatelessWidget {
       itemCount: postProvider.postList.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: (() => {
-                Navigator.pushNamed(context, AppRoute.detailScreen,
-                    arguments: postProvider.postList[index])
-              }),
-          child: PosterItem(size: size, post: postProvider.postList[index]),
-        );
+            onTap: (() => {
+                  Navigator.pushNamed(context, AppRoute.detailScreen,
+                      arguments: postProvider.postList[index])
+                }),
+            child: PosterItem(
+                size: size,
+                post: postProvider.postList[index],
+                provider: postProvider));
       },
       separatorBuilder: (BuildContext context, int index) {
         return const Divider();

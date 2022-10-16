@@ -1,6 +1,13 @@
 # crud
 
-A new Flutter project.
+Funcionalidades de app.
+
+*Vista principal con lista de elementos de post
+*Deslizamiento de item de lista principal de derecha a izquiera para eliminación de items
+*Visulización de información en detalle de cada post.
+*Edición de cada post.
+*Modificación de items deseados por el usuario.
+
 
 ## Getting Started
 

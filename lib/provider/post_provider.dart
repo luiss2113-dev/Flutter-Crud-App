@@ -63,6 +63,14 @@ class PostProvider extends ChangeNotifier {
     return false;
   }
 
+  deletePost(PostResponse post) async {
+    final response = await _getApiHerperDelete("posts/${post.id}");
+    if (response == 200) {
+      postList.remove(post);
+      notifyListeners();
+    }
+  }
+
   Future<Response> _getApiHelperPost(
       PostResponse onData, String endPoint) async {
     final response = await http.post(getUri(endPoint),
@@ -74,6 +82,11 @@ class PostProvider extends ChangeNotifier {
   Future<String> _getApiHelperGet(String endPoint) async {
     final response = await http.get(getUri(endPoint));
     return response.body;
+  }
+
+  Future<int> _getApiHerperDelete(String endPoint) async {
+    final response = await http.delete(getUri(endPoint));
+    return response.statusCode;
   }
 
   Future<Response> _getApiHerperUpdate(

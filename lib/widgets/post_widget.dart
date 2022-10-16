@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:crud/provider/post_provider.dart';
+import 'package:crud/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import '../models/models.dart';
 
@@ -7,10 +9,46 @@ class PosterItem extends StatelessWidget {
     Key? key,
     required this.size,
     required this.post,
+    required this.provider,
   }) : super(key: key);
 
   final Size size;
   final PostResponse post;
+  final PostProvider provider;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dismissible(
+        key: UniqueKey(),
+        direction: DismissDirection.endToStart,
+        confirmDismiss: (direction) async {
+          provider.deletePost(post);
+        },
+        background: const ColoredBox(
+            color: AppTheme.primary,
+            child: Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                    size: 35,
+                  ),
+                ))),
+        child: PostItemBody(post: post, size: size));
+  }
+}
+
+class PostItemBody extends StatelessWidget {
+  const PostItemBody({
+    Key? key,
+    required this.post,
+    required this.size,
+  }) : super(key: key);
+
+  final PostResponse post;
+  final Size size;
 
   @override
   Widget build(BuildContext context) {
