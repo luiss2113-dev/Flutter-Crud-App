@@ -19,7 +19,7 @@ class PostProvider extends ChangeNotifier {
     final response = await _getApiHelperGet("posts");
     final listPost = json.decode(response) as List;
 
-    for (var i = 0; i < listPost.length; i++) {
+    for (final i = 0; i < listPost.length; i++) {
       postList.add(PostResponse(
           userId: listPost[i]["userId"],
           body: listPost[i]["body"],
